@@ -109,9 +109,8 @@ public class Game {
 			case 3:
 			board = createBlankBoard(9,4);
 			int mid = 4;
-			int iter = 0;
-			int posAdj = mid+iter+1;
-			int negAdj = mid-iter-1;
+			int posAdj = mid+1;
+			int negAdj = mid-1;
 			int slot = negAdj;
 			for (int col=0; col < board.length; col++) {
 					// have to peg middle +- iteration amount
@@ -123,9 +122,8 @@ public class Game {
 				board[col][posAdj] = hole;
 				board[col][negAdj] = hole;
 		
-				iter++;
-				posAdj = mid+iter+1;
-				negAdj = mid-iter-1;
+				posAdj = mid+col+2;
+				negAdj = mid-col-2;
 				slot = negAdj;
 				}
 			break;
