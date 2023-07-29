@@ -26,7 +26,8 @@ public class Game {
 		System.out.print(prompt);
 		int input = in.nextInt();
 		while (input < min || input > max) {
-			System.out.println("Please enter your choice as an integer between 1 and 4: ");
+			System.out.print("Please enter your choice as an integer between 1 and 4: ");
+			input = in.nextInt();
 		}
 		return 0;
 	}
