@@ -113,15 +113,12 @@ public class Game {
 			int negAdj = mid-1;
 			int slot = negAdj;
 			for (int col=0; col < board.length; col++) {
-					// have to peg middle +- iteration amount
-					// have to hole +- iteration+middle
 				while (slot < posAdj) {
 					board[col][slot] = peg;
 					slot++;
 				}
 				board[col][posAdj] = hole;
 				board[col][negAdj] = hole;
-		
 				posAdj = mid+col+2;
 				negAdj = mid-col-2;
 				slot = negAdj;
