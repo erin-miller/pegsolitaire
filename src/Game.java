@@ -1,3 +1,6 @@
+package src;
+import java.util.Scanner;
+
 public class Game {
     /**
 	 * This method is used to read in all inputs from the user.  After printing
@@ -20,8 +23,31 @@ public class Game {
 	public int readValidInt(Scanner in, String prompt, int min, int max)
 	{
 		// TODO: IMPLEMENT THIS METHOD
-		return 0;
+		System.out.print(prompt);
+		int input;
+
+		input = isInteger(in);
+
+		while ((input < min || input > max)) {
+			System.out.print("Please enter your choice as an integer between 1 and 4: ");
+			input = isInteger(in);
+		}
+
+		return input;
 	}
+
+	private int isInteger(Scanner in) {
+		int input;
+		if (in.hasNextInt()) {
+			input = in.nextInt();
+		} else {
+			in.next();
+			input = -1;
+		}
+		return input;
+	}
+	
+	private 
 
 	/**
 	 * This method creates, initializes, and then returns a rectangular two 

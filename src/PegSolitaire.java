@@ -1,3 +1,5 @@
+package src;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PegSolitaire 
@@ -13,6 +15,18 @@ public class PegSolitaire
 	 */
 	public static void main(String[] args)
 	{
-		// TODO: IMPLEMENT THIS METHOD
+		Game game = new Game();
+		System.out.println(
+			"WELCOME TO CS300 PEG SOLITAIRE!\n" +
+			"===============================\n\n" +
+			"Board Style Menu\n" +
+			"  1) Cross\n" +
+			"  2) Circle\n" +
+			"  3) Triangle\n" +
+			"  4) Simple T\n");
+
+		Scanner in = new Scanner(System.in);
+		int boardType = game.readValidInt(in, "Choose a board style: ", 1, 4);
+		in.close();
 	}
 }
