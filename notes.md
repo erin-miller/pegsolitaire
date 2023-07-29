@@ -1,5 +1,3 @@
-main()
-readValidInt()
 createBoard()
 displayBoard()
 readValidMove()

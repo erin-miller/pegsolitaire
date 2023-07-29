@@ -2,6 +2,11 @@ package src;
 import java.util.Scanner;
 
 public class Game {
+
+	private final char peg = '@';
+	private final char hole = '-';
+	private final char blank = '#';
+
     /**
 	 * @param in - user input from standard in is ready through this.
 	 * @param prompt - message describing what the user is expected to enter.
@@ -76,7 +81,35 @@ public class Game {
 	public char[][] createBoard(int boardType)
 	{
 		// TODO: IMPLEMENT THIS METHOD
-		return null;
+		char[][] board;
+		switch(boardType) {
+			case 1:
+			board = createBlankBoard(9, 7);
+			for 
+			break;
+			case 2:
+			board = createBlankBoard(5, 6);
+			break;
+			case 3:
+			board = createBlankBoard(9,4);
+			break;
+			case 4:
+			board = createBlankBoard(5, 5);
+			break;
+			default:
+			board = createBlankBoard(1,1);
+		}
+		return board;
+	}
+
+	private char[][] createBlankBoard(int width, int height) {
+		char[][] board = new char[height][width];
+		for (int i=0; i < board.length; i++) {
+			for (int j=0; j < board[i].length; j++) {
+				board[i][j] = blank;
+				}
+			}
+		return board;
 	}
 	
 	/**
@@ -93,6 +126,12 @@ public class Game {
 	public void displayBoard(char[][] board)
 	{
 		// TODO: IMPLEMENT THIS METHOD
+		for (int i=0; i < board.length; i++) {
+			for (int j=0; j < board[i].length; j++) {
+				System.out.print(board[i][j]);
+				}
+			System.out.println();
+			}
 	}
 
 	
