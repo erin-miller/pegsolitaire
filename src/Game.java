@@ -24,13 +24,30 @@ public class Game {
 	{
 		// TODO: IMPLEMENT THIS METHOD
 		System.out.print(prompt);
-		int input = in.nextInt();
-		while (input < min || input > max) {
+		int input;
+
+		input = isInteger(in);
+
+		while ((input < min || input > max)) {
 			System.out.print("Please enter your choice as an integer between 1 and 4: ");
-			input = in.nextInt();
+			input = isInteger(in);
 		}
-		return 0;
+
+		return input;
 	}
+
+	private int isInteger(Scanner in) {
+		int input;
+		if (in.hasNextInt()) {
+			input = in.nextInt();
+		} else {
+			in.next();
+			input = -1;
+		}
+		return input;
+	}
+	
+	private 
 
 	/**
 	 * This method creates, initializes, and then returns a rectangular two 
