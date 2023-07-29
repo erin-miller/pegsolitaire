@@ -24,6 +24,10 @@ public class PegSolitaire
 			"  2) Circle\n" +
 			"  3) Triangle\n" +
 			"  4) Simple T\n");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5813f967ba69a41dd0a11adaca8fc03434c25dbb
 		Scanner in = new Scanner(System.in);
 		int boardType = game.readValidInt(in, "Choose a board style: ", 1, 4);
 		in.close();

@@ -3,6 +3,20 @@ import java.util.Scanner;
 
 public class Game {
     /**
+<<<<<<< HEAD
+=======
+	 * This method is used to read in all inputs from the user.  After printing
+	 * the specified prompt, it will check whether the user�s input is in fact
+	 * an integer within the specified range.  If the user�s input does not 
+	 * represent an integer or does not fall within the required range, print
+	 * an error message asking for a value within that range before giving the
+	 * user another chance to enter valid input.  The user should be given as
+	 * many chances as they need to enter a valid integer within the specified
+	 * range.  See the Sample Runs to see how these error messages should be 
+	 * phrased, and to see how the prompts are repeated when multiple invalid 
+	 * inputs are entered by the user.
+	 * 
+>>>>>>> 5813f967ba69a41dd0a11adaca8fc03434c25dbb
 	 * @param in - user input from standard in is ready through this.
 	 * @param prompt - message describing what the user is expected to enter.
 	 * @param min - the smallest valid integer that the user may enter.
@@ -11,13 +25,26 @@ public class Game {
 	 */
 	public int readValidInt(Scanner in, String prompt, int min, int max)
 	{
+<<<<<<< HEAD
 		int input;
 		System.out.print(prompt);
 		input = isInteger(in);
+=======
+		// TODO: IMPLEMENT THIS METHOD
+		System.out.print(prompt);
+		int input;
+
+		input = isInteger(in);
+
+>>>>>>> 5813f967ba69a41dd0a11adaca8fc03434c25dbb
 		while ((input < min || input > max)) {
 			System.out.print("Please enter your choice as an integer between 1 and 4: ");
 			input = isInteger(in);
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5813f967ba69a41dd0a11adaca8fc03434c25dbb
 		return input;
 	}
 
@@ -31,6 +58,11 @@ public class Game {
 		}
 		return input;
 	}
+<<<<<<< HEAD
+=======
+	
+	private 
+>>>>>>> 5813f967ba69a41dd0a11adaca8fc03434c25dbb
 
 	/**
 	 * This method creates, initializes, and then returns a rectangular two 
