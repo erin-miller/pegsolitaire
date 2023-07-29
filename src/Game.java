@@ -1,4 +1,7 @@
 package src;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -80,21 +83,67 @@ public class Game {
 	 */
 	public char[][] createBoard(int boardType)
 	{
-		// TODO: IMPLEMENT THIS METHOD
 		char[][] board;
 		switch(boardType) {
 			case 1:
 			board = createBlankBoard(9, 7);
-			for 
+			List<Integer> corners = Arrays.asList(0,1,5,6);
+			for (int col=0; col < board.length; col++) {
+				for (int row=0; row < board[col].length; row++) {
+					if (corners.contains(col)) {
+						for (int slot=3; slot < 6; slot++) {
+							board[col][slot] = peg;
+						}
+					} else {
+						board[col][row] = peg;
+					}
+				}
+			}
+			board[3][4] = hole;
 			break;
+
 			case 2:
 			board = createBlankBoard(5, 6);
 			break;
+
 			case 3:
 			board = createBlankBoard(9,4);
+			int mid = 4;
+			int iter = 0;
+			int posAdj = mid+iter+1;
+			int negAdj = mid-iter-1;
+			int slot = negAdj;
+			for (int col=0; col < board.length; col++) {
+					// have to peg middle +- iteration amount
+					// have to hole +- iteration+middle
+				while (slot < posAdj) {
+					board[col][slot] = peg;
+					slot++;
+				}
+				board[col][posAdj] = hole;
+				board[col][negAdj] = hole;
+		
+				iter++;
+				posAdj = mid+iter+1;
+				negAdj = mid-iter-1;
+				slot = negAdj;
+				}
 			break;
+
 			case 4:
-			board = createBlankBoard(5, 5);
+			board = new char[5][5];
+			for (int col=0; col < board.length; col++) {
+				for (int row=0; row < board[col].length; row++) {
+					board[col][row] = hole;
+					if (col > 0 && col < 4) {
+						board[col][2] = peg;
+					}
+					if (col == 1) {
+						board[col][1] = peg;
+						board[col][3] = peg;
+					}
+				}
+			}
 			break;
 			default:
 			board = createBlankBoard(1,1);
@@ -104,9 +153,9 @@ public class Game {
 
 	private char[][] createBlankBoard(int width, int height) {
 		char[][] board = new char[height][width];
-		for (int i=0; i < board.length; i++) {
-			for (int j=0; j < board[i].length; j++) {
-				board[i][j] = blank;
+		for (int col=0; col < board.length; col++) {
+			for (int row=0; row < board[col].length; row++) {
+				board[col][row] = blank;
 				}
 			}
 		return board;
@@ -125,10 +174,9 @@ public class Game {
 	 */
 	public void displayBoard(char[][] board)
 	{
-		// TODO: IMPLEMENT THIS METHOD
-		for (int i=0; i < board.length; i++) {
-			for (int j=0; j < board[i].length; j++) {
-				System.out.print(board[i][j]);
+		for (int col=0; col < board.length; col++) {
+			for (int row=0; row < board[col].length; row++) {
+				System.out.print(board[col][row]);
 				}
 			System.out.println();
 			}
