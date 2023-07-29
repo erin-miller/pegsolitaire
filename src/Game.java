@@ -167,9 +167,14 @@ public class Game {
 	 * 
 	 * @param board - the current state of the board being drawn.
 	 */
-	public void displayBoard(char[][] board)
-	{
+	public void displayBoard(char[][] board) {
+		System.out.print("   ");
+		for (int i=0; i < board[0].length; i++) {
+			System.out.print(i+1);
+		}
+		System.out.println();
 		for (int col=0; col < board.length; col++) {
+			System.out.print(col + "  ");
 			for (int row=0; row < board[col].length; row++) {
 				System.out.print(board[col][row]);
 				}
