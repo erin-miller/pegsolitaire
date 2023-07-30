@@ -30,6 +30,8 @@ public class PegSolitaire
 		char[][] board = game.createBoard(boardType);
 		game.displayBoard(board);
 		int[] move = game.readValidMove(in, board);
+		board = game.performMove(board, move[1], move[0], move[2]);
+		game.displayBoard(board);
 		in.close();
 	}
 }

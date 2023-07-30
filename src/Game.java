@@ -303,8 +303,27 @@ public class Game {
 	 */
 	public char[][] performMove(char[][] board, int row, int column, int direction)
 	{
-		// TODO: IMPLEMENT THIS METHOD
-		return null;
+		row -= 1;
+		column -=1 ;
+		board[row][column] = hole;
+		switch(direction) {
+			case 1:
+				board[row-1][column] = hole;
+				board[row-2][column] = peg;
+				break;
+			case 2:
+				board[row+1][column] = hole;
+				board[row+2][column] = peg;
+				break;
+			case 3:
+				board[row][column-1] = hole;
+				board[row][column-2] = peg;
+				break;
+			default:
+				board[row][column+1] = hole;
+				board[row][column+2] = peg;
+		}
+		return board;
 	}
 	
 	/**
