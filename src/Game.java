@@ -259,22 +259,26 @@ public class Game {
 
 			switch(direction) {
 				case 1: 
-					if ((!(board[row-1][column] == peg)) || (!(board[row-2][column] == hole))) {
+					if ((!(board[row-1][column] == peg)) || 
+						(!(board[row-2][column] == hole))) {
 						return false;
 					}
 					break;
 				case 2: 
-					if ((!(board[row+1][column] == peg)) || (!(board[row+2][column] == hole))) {
+					if ((!(board[row+1][column] == peg)) || 
+						(!(board[row+2][column] == hole))) {
 						return false;
 					}
 					break;
 				case 3: 
-					if ((!(board[row][column-1] == peg)) || (!(board[row][column-2] == hole))) {
+					if ((!(board[row][column-1] == peg)) || 
+						(!(board[row][column-2] == hole))) {
 						return false;
 					}
 					break;
 				default: 
-					if ((!(board[row][column+1] == peg)) || (!(board[row][column+2] == hole))) {
+					if ((!(board[row][column+1] == peg)) || 
+						(!(board[row][column+2] == hole))) {
 						return false;
 					}
 			}
