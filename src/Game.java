@@ -27,7 +27,6 @@ public class Game {
 							"%d and %d: ", min, max);
 			input = isInteger(in);
 		}
-		System.out.println();
 		return input;
 	}
 
@@ -161,7 +160,7 @@ public class Game {
 	 * @param board - the current state of the board being drawn.
 	 */
 	public void displayBoard(char[][] board) {
-		System.out.print("   ");
+		System.out.print("\n   ");
 		for (int i=0; i < board[0].length; i++) {
 			System.out.print(i+1);
 		}
@@ -212,7 +211,7 @@ public class Game {
 			} else {
 				directionType = findDirectionType(direction);
 				System.out.printf("Moving a peg from row %d and column %d " +
-							"%s is not currently a legal move.%n",
+							"%s is not currently a legal move.%n%n",
 							row, col, directionType);
 			}
 		}
