@@ -200,13 +200,13 @@ public class Game {
 		String directionType;
 		boolean valid = false;
 		while (!valid) {
-			row = readValidInt(in, "Choose the COLUMN of a peg you'd " +
+			col = readValidInt(in, "Choose the COLUMN of a peg you'd " +
 							"like to move: ", 1, board[0].length);
-			col = readValidInt(in, "Choose the ROW of a peg you'd " +
+			row = readValidInt(in, "Choose the ROW of a peg you'd " +
 							"like to move: ", 1, board.length);
 			direction = readValidInt(in, "Choose a DIRECTION to move that peg " +
 							"1) UP, 2) DOWN, 3) LEFT, or 4) RIGHT: ", 1, 4);
-			if ((isValidMove(board, row, col, direction))) {
+			if (isValidMove(board, row, col, direction)) {
 				valid = true;
 			} else {
 				directionType = findDirectionType(direction);
@@ -241,7 +241,6 @@ public class Game {
 	 * row and column parameters here begin with one, and may need to be 
 	 * adjusted if your programming language utilizes arrays with zero-based 
 	 * indexing.
-	 * 
 	 * @param board - the state of the board that moves must be legal on.
 	 * @param row - the vertical position of the peg proposed to be moved.
 	 * @param column - the horizontal position of the peg proposed to be moved.
@@ -251,13 +250,38 @@ public class Game {
 
 	public boolean isValidMove(char[][] board, int row, int column, int direction)
 	{
-		// TODO: IMPLEMENT THIS METHOD
+		row -= 1;
+		column -= 1;
 		try {
+			if (!(board[row][column] == peg)) {
+				return false;
+			}
 
+			switch(direction) {
+				case 1: 
+					if ((!(board[row-1][column] == peg)) || (!(board[row-2][column] == hole))) {
+						return false;
+					}
+					break;
+				case 2: 
+					if ((!(board[row+1][column] == peg)) || (!(board[row+2][column] == hole))) {
+						return false;
+					}
+					break;
+				case 3: 
+					if ((!(board[row][column-1] == peg)) || (!(board[row][column-2] == hole))) {
+						return false;
+					}
+					break;
+				default: 
+					if ((!(board[row][column+1] == peg)) || (!(board[row][column+2] == hole))) {
+						return false;
+					}
+			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	/**
