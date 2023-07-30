@@ -336,9 +336,9 @@ public class Game {
 	public int countPegsRemaining(char[][] board)
 	{
 		int pegs = 0;
-		for (int i=0; i < board.length; i++) {
-			for (int j=0; j < board[i].length; j++) {
-				if (board[i][j] == peg) {
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				if (board[row][col] == peg) {
 					pegs++;
 				}
 			}
@@ -360,8 +360,17 @@ public class Game {
 	 */
 	public int countMovesAvailable(char[][] board)
 	{
-		// TODO: IMPLEMENT THIS METHOD
-		return 0;
+		int moves = 0;
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				for (int direction=1; direction <= 4; direction++){
+					if (isValidMove(board, row, col, direction)) {
+						moves++;
+						}
+					}
+				}
+			}
+		return moves;
 	}	
 
 }
