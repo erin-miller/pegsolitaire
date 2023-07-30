@@ -16,6 +16,7 @@ public class PegSolitaire
 	public static void main(String[] args)
 	{
 		Game game = new Game();
+		boolean continuePlay = true;
 		System.out.println(
 			"WELCOME TO CS300 PEG SOLITAIRE!\n" +
 			"===============================\n\n" +
@@ -29,11 +30,21 @@ public class PegSolitaire
 										1, 4);
 		char[][] board = game.createBoard(boardType);
 		game.displayBoard(board);
-		int[] move = game.readValidMove(in, board);
-		board = game.performMove(board, move[1], move[0], move[2]);
-		game.displayBoard(board);
-		System.out.println(game.countPegsRemaining(board));
-		System.out.print(game.countMovesAvailable(board));
+		while (continuePlay) {
+				int[] move = game.readValidMove(in, board);
+				board = game.performMove(board, move[1], move[0], move[2]);
+				game.displayBoard(board);
+				if (game.countPegsRemaining(board) == 1) {
+					continuePlay = false;
+					System.out.println("Congrats, you won!");
+				} else if (game.countMovesAvailable(board) == 0) {
+					continuePlay = false;
+					System.out.println("It looks like there are no more " +
+									"legal moves. Please try again.");
+				}
+			}
+		System.out.println("\n==========================================" +
+			"\nTHANK YOU FOR PLAYING CS300 PEG SOLITAIRE!");
 		in.close();
 	}
 }
