@@ -176,17 +176,6 @@ public class Game {
 
 	
 	/**
-	 * This method is used to read in and validate each part of a user�s move 
-	 * choice: the row and column that they wish to move a peg from, and the 
-	 * direction that they would like to move/jump that peg in.  When the 
-	 * player�s row, column, and direction selection does not represent a valid
-	 * move, your program should report that their choice does not constitute a
-	 * legal move before giving them another chance to enter a different move.  
-	 * They should be given as many chances as necessary to enter a legal move.
-	 * The array of three integers that this method returns will contain: the 
-	 * user�s choice of column as  the first integer, their choice of row as the
-	 * second integer, and their choice of direction as the third.
-	 * 
 	 * @param in - user input from standard in is ready through this.
 	 * @param board - the state of the board that moves must be legal on.
 	 * @return - the user's choice of column, row, and direction representing
@@ -231,16 +220,7 @@ public class Game {
 		}
 	}
 	
-	/**1)there must be a peg at position row, column within the board,
-	 * 2)there must be another peg neighboring that first one in the specified
-	 * direction, 3)there must be an empty hole on the other side of that
-	 * neighboring peg (further in the specified direction).  This method
-	 * only returns true when all three of these conditions are met.  If any of
-	 * the three positions being checked happen to fall beyond the bounds of 
-	 * your board array, then this method should return false.  Note that the 
-	 * row and column parameters here begin with one, and may need to be 
-	 * adjusted if your programming language utilizes arrays with zero-based 
-	 * indexing.
+	/**
 	 * @param board - the state of the board that moves must be legal on.
 	 * @param row - the vertical position of the peg proposed to be moved.
 	 * @param column - the horizontal position of the peg proposed to be moved.
@@ -289,12 +269,6 @@ public class Game {
 	}
 	
 	/**
-	 * The parameters of this method are the same as those of the isValidMove()
-	 * method.  However this method changes the board state according to this
-	 * move parameter (column + row + direction), instead of validating whether
-	 * the move is valid.  If the move specification that is passed into this
-	 * method does not represent a legal move, then do not modify the board.
-	 * 
 	 * @param board - the state of the board will be changed by this move.
 	 * @param row - the vertical position that a peg will be moved from.
 	 * @param column - the horizontal position that a peg will be moved from.
@@ -327,9 +301,6 @@ public class Game {
 	}
 	
 	/**
-	 * This method counts up the number of pegs left within a particular board 
-	 * configuration, and returns that number.
-	 * 
 	 * @param board - the board that pegs are counted from.
 	 * @return - the number of pegs found in that board.
 	 */
@@ -347,14 +318,6 @@ public class Game {
 	}
 	
 	/**
-	 * This method counts up the number of legal moves that are available to be
-	 * performed in a given board configuration.
-	 * 
-	 * HINT: Would it be possible to call the isValidMove() method for every
-	 * direction and from every position within your board?  Counting up the
-	 * number of these calls that return true should yield the total number of
-	 * moves available within a specific board.
-	 * 
 	 * @param board - the board that possible moves are counted from.
 	 * @return - the number of legal moves found in that board.
 	 */
