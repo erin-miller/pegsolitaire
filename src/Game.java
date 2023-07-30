@@ -35,9 +35,9 @@ public class Game {
 		if (in.hasNextInt()) {
 			input = in.nextInt();
 		} else {
-			in.next();
 			input = -1;
 		}
+		in.nextLine();
 		return input;
 	}
 
