@@ -32,6 +32,7 @@ public class PegSolitaire
 		int[] move = game.readValidMove(in, board);
 		board = game.performMove(board, move[1], move[0], move[2]);
 		game.displayBoard(board);
+		System.out.print(game.countPegsRemaining(board));
 		in.close();
 	}
 }

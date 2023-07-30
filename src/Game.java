@@ -335,8 +335,15 @@ public class Game {
 	 */
 	public int countPegsRemaining(char[][] board)
 	{
-		// TODO: IMPLEMENT THIS METHOD
-		return 0;
+		int pegs = 0;
+		for (int i=0; i < board.length; i++) {
+			for (int j=0; j < board[i].length; j++) {
+				if (board[i][j] == peg) {
+					pegs++;
+				}
+			}
+		}
+		return pegs;
 	}
 	
 	/**
