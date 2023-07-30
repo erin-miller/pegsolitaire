@@ -23,7 +23,8 @@ public class Game {
 		System.out.print(prompt);
 		input = isInteger(in);
 		while ((input < min || input > max)) {
-			System.out.print("Please enter your choice as an integer between 1 and 4: ");
+			System.out.printf("Please enter your choice as an integer between " +
+							"%d and %d: ", min, max);
 			input = isInteger(in);
 		}
 		System.out.println();
@@ -53,94 +54,95 @@ public class Game {
 		int slot;
 		switch(boardType) {
 			case 1: // CROSS
-			board = createBlankBoard(9, 7);
-			List<Integer> corners = Arrays.asList(0,1,5,6);
-			for (int row=0; row < board.length; row++) {
-				for (int col=0; col < board[row].length; col++) {
-					if (corners.contains(row)) {
-						for (int i=3; i < 6; i++) {
-							board[row][i] = peg;
+				board = createBlankBoard(9, 7);
+				List<Integer> corners = Arrays.asList(0,1,5,6);
+				for (int row=0; row < board.length; row++) {
+					for (int col=0; col < board[row].length; col++) {
+						if (corners.contains(row)) {
+							for (int i=3; i < 6; i++) {
+								board[row][i] = peg;
+							}
+						} else {
+							board[row][col] = peg;
 						}
-					} else {
-						board[row][col] = peg;
 					}
 				}
-			}
-			board[3][4] = hole;
-			break;
+				board[3][4] = hole;
+				break;
 
 			case 2: // CIRCLE
-			board = createBlankBoard(6, 6);
-			posAdj = 4;
-			negAdj = 2;
-			slot = negAdj;
-			boolean flip = false;
-			for (int row=0; row < board.length; row++) {
-				if (negAdj == -1) {
-					posAdj = 6;
-					negAdj = 0;
-					slot = negAdj;
-					flip = true;
-				}
-
-				while (slot < posAdj) {
-					board[row][slot] = peg;
-					slot++;
-				}
-
-				if (!((row == 2) || (row == 3))) {
-					board[row][posAdj] = hole;
-					board[row][negAdj-1] = hole;
-				}
-				
-				if (flip) {
-					posAdj--;
-					negAdj++;
-				} else {
-					posAdj++;
-					negAdj--;
-				}
+				board = createBlankBoard(6, 6);
+				posAdj = 4;
+				negAdj = 2;
 				slot = negAdj;
-			}
-			break;
+				boolean flip = false;
+				for (int row=0; row < board.length; row++) {
+					if (negAdj == -1) {
+						posAdj = 6;
+						negAdj = 0;
+						slot = negAdj;
+						flip = true;
+					}
+
+					while (slot < posAdj) {
+						board[row][slot] = peg;
+						slot++;
+					}
+
+					if (!((row == 2) || (row == 3))) {
+						board[row][posAdj] = hole;
+						board[row][negAdj-1] = hole;
+					}
+					
+					if (flip) {
+						posAdj--;
+						negAdj++;
+					} else {
+						posAdj++;
+						negAdj--;
+					}
+					slot = negAdj;
+				}
+				break;
 
 			case 3: // TRIANGLE
-			board = createBlankBoard(9,4);
-			int mid = 4;
-			posAdj = mid+1;
-			negAdj = mid-1;
-			slot = negAdj;
-			for (int row=0; row < board.length; row++) {
-				while (slot < posAdj) {
-					board[row][slot] = peg;
-					slot++;
-				}
-				board[row][posAdj] = hole;
-				board[row][negAdj] = hole;
-				posAdj = mid+row+2;
-				negAdj = mid-row-2;
+				board = createBlankBoard(9,4);
+				int mid = 4;
+				posAdj = mid+1;
+				negAdj = mid-1;
 				slot = negAdj;
-				}
-			board[2][4] = hole;
-			break;
+				for (int row=0; row < board.length; row++) {
+					while (slot < posAdj) {
+						board[row][slot] = peg;
+						slot++;
+					}
+					board[row][posAdj] = hole;
+					board[row][negAdj] = hole;
+					posAdj = mid+row+2;
+					negAdj = mid-row-2;
+					slot = negAdj;
+					}
+				board[2][4] = hole;
+				break;
 
 			case 4: // SIMPLE T
-			board = new char[5][5];
-			for (int row=0; row < board.length; row++) {
-				for (int col=0; col < board[row].length; col++) {
-					board[row][col] = hole;
-					if (row > 0 && row < 4) {
-						board[row][2] = peg;
-					}
-					if (row == 1) {
-						board[row][1] = peg;
-						board[row][3] = peg;
+				board = new char[5][5];
+				for (int row=0; row < board.length; row++) {
+					for (int col=0; col < board[row].length; col++) {
+						board[row][col] = hole;
+						if (row > 0 && row < 4) {
+							board[row][2] = peg;
+						}
+						if (row == 1) {
+							board[row][1] = peg;
+							board[row][3] = peg;
+						}
 					}
 				}
-			}
-			break;
+				break;
+
 			default:
-			board = createBlankBoard(1,1);
+				board = createBlankBoard(1,1);
 		}
 		return board;
 	}
@@ -193,16 +195,46 @@ public class Game {
 	 */
 	public int[] readValidMove(Scanner in, char[][] board)
 	{
-		// TODO: IMPLEMENT THIS METHOD
-		return null;
+		int row;
+		int col;
+		int direction;
+		String directionType;
+		boolean valid = false;
+		while (!valid) {
+			row = readValidInt(in, "Choose the COLUMN of a peg you'd " +
+							"like to move: ", 1, board[0].length+1);
+			col = readValidInt(in, "Choose the ROW of a peg you'd " +
+							"like to move: ", 1, board.length+1);
+			direction = readValidInt(in, "Choose a DIRECTION to move that peg " +
+							"1) UP, 2) DOWN, 3) LEFT, or 4) RIGHT: ", 1, 4);
+			if ((isValidMove(board, row, col, direction))) {
+				valid = true;
+			} else {
+				directionType = findDirectionType(direction);
+				System.out.printf("Moving a peg from row %d and column %d " +
+							"%s is not currently a legal move.%n",
+							row, col, directionType);
+			}
+		}
+		return Arrays.asList(col, row, direction);
+	}
+
+	private String findDirectionType(int direction) {
+		switch(direction) {
+			case 1:
+				return "UP";
+			case 2:
+				return "DOWN";
+			case 3:
+				return "LEFT";
+			default:
+				return "RIGHT";
+		}
 	}
 	
-	/**
-	 * This method checks whether a specific move (column + row + direction) is
-	 * valid within a specific board configuration.  In order for a move to be
-	 * a valid: 1)there must be a peg at position row, column within the board,
+	/**1)there must be a peg at position row, column within the board,
 	 * 2)there must be another peg neighboring that first one in the specified
-	 * direction, and 3)there must be an empty hole on the other side of that
+	 * direction, 3)there must be an empty hole on the other side of that
 	 * neighboring peg (further in the specified direction).  This method
 	 * only returns true when all three of these conditions are met.  If any of
 	 * the three positions being checked happen to fall beyond the bounds of 
@@ -221,6 +253,11 @@ public class Game {
 	public boolean isValidMove(char[][] board, int row, int column, int direction)
 	{
 		// TODO: IMPLEMENT THIS METHOD
+		try {
+
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return false;
+		}
 		return false;
 	}
 	
