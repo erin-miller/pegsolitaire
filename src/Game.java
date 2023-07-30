@@ -48,18 +48,21 @@ public class Game {
 	public char[][] createBoard(int boardType)
 	{
 		char[][] board;
+		int posAdj;
+		int negAdj;
+		int slot;
 		switch(boardType) {
 			case 1: // CROSS
 			board = createBlankBoard(9, 7);
 			List<Integer> corners = Arrays.asList(0,1,5,6);
-			for (int col=0; col < board.length; col++) {
-				for (int row=0; row < board[col].length; row++) {
-					if (corners.contains(col)) {
-						for (int slot=3; slot < 6; slot++) {
-							board[col][slot] = peg;
+			for (int row=0; row < board.length; row++) {
+				for (int col=0; col < board[row].length; col++) {
+					if (corners.contains(row)) {
+						for (int i=3; i < 6; i++) {
+							board[row][i] = peg;
 						}
 					} else {
-						board[col][row] = peg;
+						board[row][col] = peg;
 					}
 				}
 			}
@@ -67,39 +70,70 @@ public class Game {
 			break;
 
 			case 2: // CIRCLE
-			board = createBlankBoard(5, 6);
+			board = createBlankBoard(6, 6);
+			posAdj = 4;
+			negAdj = 2;
+			slot = negAdj;
+			boolean flip = false;
+			for (int row=0; row < board.length; row++) {
+				if (negAdj == -1) {
+					posAdj = 6;
+					negAdj = 0;
+					slot = negAdj;
+					flip = true;
+				}
+
+				while (slot < posAdj) {
+					board[row][slot] = peg;
+					slot++;
+				}
+
+				if (!((row == 2) || (row == 3))) {
+					board[row][posAdj] = hole;
+					board[row][negAdj-1] = hole;
+				}
+				
+				if (flip) {
+					posAdj--;
+					negAdj++;
+				} else {
+					posAdj++;
+					negAdj--;
+				}
+				slot = negAdj;
+			}
 			break;
 
 			case 3: // TRIANGLE
 			board = createBlankBoard(9,4);
 			int mid = 4;
-			int posAdj = mid+1;
-			int negAdj = mid-1;
-			int slot = negAdj;
-			for (int col=0; col < board.length; col++) {
+			posAdj = mid+1;
+			negAdj = mid-1;
+			slot = negAdj;
+			for (int row=0; row < board.length; row++) {
 				while (slot < posAdj) {
-					board[col][slot] = peg;
+					board[row][slot] = peg;
 					slot++;
 				}
-				board[col][posAdj] = hole;
-				board[col][negAdj] = hole;
-				posAdj = mid+col+2;
-				negAdj = mid-col-2;
+				board[row][posAdj] = hole;
+				board[row][negAdj] = hole;
+				posAdj = mid+row+2;
+				negAdj = mid-row-2;
 				slot = negAdj;
 				}
 			break;
 
 			case 4: // SIMPLE T
 			board = new char[5][5];
-			for (int col=0; col < board.length; col++) {
-				for (int row=0; row < board[col].length; row++) {
-					board[col][row] = hole;
-					if (col > 0 && col < 4) {
-						board[col][2] = peg;
+			for (int row=0; row < board.length; row++) {
+				for (int col=0; col < board[row].length; col++) {
+					board[row][col] = hole;
+					if (row > 0 && row < 4) {
+						board[row][2] = peg;
 					}
-					if (col == 1) {
-						board[col][1] = peg;
-						board[col][3] = peg;
+					if (row == 1) {
+						board[row][1] = peg;
+						board[row][3] = peg;
 					}
 				}
 			}
@@ -112,9 +146,9 @@ public class Game {
 
 	private char[][] createBlankBoard(int width, int height) {
 		char[][] board = new char[height][width];
-		for (int col=0; col < board.length; col++) {
-			for (int row=0; row < board[col].length; row++) {
-				board[col][row] = blank;
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				board[row][col] = blank;
 				}
 			}
 		return board;
@@ -129,10 +163,10 @@ public class Game {
 			System.out.print(i+1);
 		}
 		System.out.println();
-		for (int col=0; col < board.length; col++) {
-			System.out.print(col + "  ");
-			for (int row=0; row < board[col].length; row++) {
-				System.out.print(board[col][row]);
+		for (int row=0; row < board.length; row++) {
+			System.out.print(row + "  ");
+			for (int col=0; col < board[row].length; col++) {
+				System.out.print(board[row][col]);
 				}
 			System.out.println();
 			}

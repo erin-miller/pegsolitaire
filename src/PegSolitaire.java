@@ -27,7 +27,6 @@ public class PegSolitaire
 		Scanner in = new Scanner(System.in);
 		int boardType = game.readValidInt(in, "Choose a board style: ", 1, 4);
 		in.close();
-
 		char[][] board = game.createBoard(boardType);
 		game.displayBoard(board);
 	}
