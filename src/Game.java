@@ -26,6 +26,7 @@ public class Game {
 			System.out.print("Please enter your choice as an integer between 1 and 4: ");
 			input = isInteger(in);
 		}
+		System.out.println();
 		return input;
 	}
 
@@ -41,51 +42,14 @@ public class Game {
 	}
 
 	/**
-	 * This method creates, initializes, and then returns a rectangular two 
-	 * dimensional array of characters according to the specified boardType.  
-	 * Initial configurations for each of the possible board types are depicted
-	 * below.  Note that pegs are displayed as @s, empty holes are displayed as
-	 * -s, and extra blank positions that are neither pegs nor holes within 
-	 * each rectangular array are displayed as #s.
-	 * 
 	 * @param boardType - 1-4 indicating one of the following initial patterns:
-	 *   1) Cross
-	 *     ###@@@###
-	 *     ###@@@###
-	 *     @@@@@@@@@
-	 *     @@@@-@@@@
-	 *     @@@@@@@@@
-	 *     ###@@@###
-	 *     ###@@@###
-	 *     
-	 *   2) Circle
-	 *     #-@@-#
-	 *     -@@@@-
-	 *     @@@@@@
-	 *     @@@@@@
-	 *     -@@@@-
-	 *     #-@@-#
-	 *     
-	 *   3) Triangle
-	 *     ###-@-###
-	 *     ##-@@@-##
-	 *     #-@@-@@-#
-	 *     -@@@@@@@-
-	 *     
-	 *   4) Simple T
-	 *     -----
-	 *     -@@@-
-	 *     --@--
-	 *     --@--
-	 *     -----
-	 *     
 	 * @return - the fully initialized two dimensional array.
 	 */
 	public char[][] createBoard(int boardType)
 	{
 		char[][] board;
 		switch(boardType) {
-			case 1:
+			case 1: // CROSS
 			board = createBlankBoard(9, 7);
 			List<Integer> corners = Arrays.asList(0,1,5,6);
 			for (int col=0; col < board.length; col++) {
@@ -102,11 +66,11 @@ public class Game {
 			board[3][4] = hole;
 			break;
 
-			case 2:
+			case 2: // CIRCLE
 			board = createBlankBoard(5, 6);
 			break;
 
-			case 3:
+			case 3: // TRIANGLE
 			board = createBlankBoard(9,4);
 			int mid = 4;
 			int posAdj = mid+1;
@@ -125,7 +89,7 @@ public class Game {
 				}
 			break;
 
-			case 4:
+			case 4: // SIMPLE T
 			board = new char[5][5];
 			for (int col=0; col < board.length; col++) {
 				for (int row=0; row < board[col].length; row++) {
@@ -157,14 +121,6 @@ public class Game {
 	}
 	
 	/**
-	 * This method prints out the contents of the specified board using @s to 
-	 * represent pegs, -s to represent empty hole, and #s to represent empty 
-	 * positions that are neither pegs nor holes.  In addition to this, the 
-	 * columns and rows of this board should be labelled with numbers starting 
-	 * at one and increasing from left to right (for column labels) and from 
-	 * top to bottom (for row labels).  See the Sample Runs for examples of how
-	 * these labels appear next to boards with different dimensions.
-	 * 
 	 * @param board - the current state of the board being drawn.
 	 */
 	public void displayBoard(char[][] board) {
@@ -192,7 +148,7 @@ public class Game {
 	 * legal move before giving them another chance to enter a different move.  
 	 * They should be given as many chances as necessary to enter a legal move.
 	 * The array of three integers that this method returns will contain: the 
-	 * user�s choice of column as the first integer, their choice of row as the
+	 * user�s choice of column as  the first integer, their choice of row as the
 	 * second integer, and their choice of direction as the third.
 	 * 
 	 * @param in - user input from standard in is ready through this.
