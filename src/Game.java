@@ -167,7 +167,7 @@ public class Game {
 		}
 		System.out.println();
 		for (int row=0; row < board.length; row++) {
-			System.out.print(row + "  ");
+			System.out.print(row+1 + "  ");
 			for (int col=0; col < board[row].length; col++) {
 				System.out.print(board[row][col]);
 				}
@@ -195,16 +195,16 @@ public class Game {
 	 */
 	public int[] readValidMove(Scanner in, char[][] board)
 	{
-		int row;
-		int col;
-		int direction;
+		int row = -1;
+		int col = -1;
+		int direction = -1;
 		String directionType;
 		boolean valid = false;
 		while (!valid) {
 			row = readValidInt(in, "Choose the COLUMN of a peg you'd " +
-							"like to move: ", 1, board[0].length+1);
+							"like to move: ", 1, board[0].length);
 			col = readValidInt(in, "Choose the ROW of a peg you'd " +
-							"like to move: ", 1, board.length+1);
+							"like to move: ", 1, board.length);
 			direction = readValidInt(in, "Choose a DIRECTION to move that peg " +
 							"1) UP, 2) DOWN, 3) LEFT, or 4) RIGHT: ", 1, 4);
 			if ((isValidMove(board, row, col, direction))) {
@@ -216,7 +216,7 @@ public class Game {
 							row, col, directionType);
 			}
 		}
-		return Arrays.asList(col, row, direction);
+		return new int[] {col, row, direction};
 	}
 
 	private String findDirectionType(int direction) {

@@ -25,9 +25,11 @@ public class PegSolitaire
 			"  3) Triangle\n" +
 			"  4) Simple T");
 		Scanner in = new Scanner(System.in);
-		int boardType = game.readValidInt(in, "Choose a board style: ", 1, 4);
-		in.close();
+		int boardType = game.readValidInt(in, "Choose a board style: ", 
+										1, 4);
 		char[][] board = game.createBoard(boardType);
 		game.displayBoard(board);
+		int[] move = game.readValidMove(in, board);
+		in.close();
 	}
 }
