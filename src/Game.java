@@ -121,6 +121,7 @@ public class Game {
 				negAdj = mid-row-2;
 				slot = negAdj;
 				}
+			board[2][4] = hole;
 			break;
 
 			case 4: // SIMPLE T
