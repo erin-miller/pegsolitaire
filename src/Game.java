@@ -364,7 +364,7 @@ public class Game {
 		for (int row=0; row < board.length; row++) {
 			for (int col=0; col < board[row].length; col++) {
 				for (int direction=1; direction <= 4; direction++){
-					if (isValidMove(board, row, col, direction)) {
+					if (isValidMove(board, row+1, col+1, direction)) {
 						moves++;
 						}
 					}
