@@ -238,8 +238,7 @@ public class Game {
 	}
 
 private char[][] createSimpleT() {
-		char[][] board;
-		board = new char[5][5];
+		char[][] board = new char[5][5];
 		for (int row=0; row < board.length; row++) {
 			for (int col=0; col < board[row].length; col++) {
 				board[row][col] = hole;
@@ -256,15 +255,11 @@ private char[][] createSimpleT() {
 	}
 
 	private char[][] createTriangle() {
-		char[][] board;
-		int posAdj;
-		int negAdj;
-		int slot;
-		board = createBlankBoard(9,4);
 		int mid = 4;
-		posAdj = mid+1;
-		negAdj = mid-1;
-		slot = negAdj;
+		int posAdj = mid+1;
+		int negAdj = mid-1;
+		int slot = negAdj;
+		char[][] board = createBlankBoard(9,4);
 		for (int row=0; row < board.length; row++) {
 			while (slot < posAdj) {
 				board[row][slot] = peg;
@@ -281,14 +276,10 @@ private char[][] createSimpleT() {
 	}
 
 	private char[][] createCircle() {
-		char[][] board;
-		int posAdj;
-		int negAdj;
-		int slot;
-		board = createBlankBoard(6, 6);
-		posAdj = 4;
-		negAdj = 2;
-		slot = negAdj;
+		char[][] board = createBlankBoard(6, 6);
+		int posAdj = 4;
+		int negAdj = 2;
+		int slot = negAdj;
 		boolean flip = false;
 		for (int row=0; row < board.length; row++) {
 			if (negAdj == -1) {
@@ -321,8 +312,7 @@ private char[][] createSimpleT() {
 	}
 
 	private char[][] createCross() {
-		char[][] board;
-		board = createBlankBoard(9, 7);
+		char[][] board = createBlankBoard(9, 7);
 		List<Integer> corners = Arrays.asList(0,1,5,6);
 		for (int row=0; row < board.length; row++) {
 			for (int col=0; col < board[row].length; col++) {
@@ -338,6 +328,16 @@ private char[][] createSimpleT() {
 		board[3][4] = hole;
 		return board;
 	}
+	
+	private char[][] createBlankBoard(int width, int height) {
+		char[][] board = new char[height][width];
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				board[row][col] = blank;
+				}
+			}
+		return board;
+	}		
 
 	private String findDirectionType(int direction) {
 		switch(direction) {
@@ -351,14 +351,4 @@ private char[][] createSimpleT() {
 				return "RIGHT";
 		}
 	}
-
-	private char[][] createBlankBoard(int width, int height) {
-		char[][] board = new char[height][width];
-		for (int row=0; row < board.length; row++) {
-			for (int col=0; col < board[row].length; col++) {
-				board[row][col] = blank;
-				}
-			}
-		return board;
-	}		
 }
