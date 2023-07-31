@@ -245,18 +245,18 @@ public class Game {
 			int mid = 4;
 			int posAdj = mid+1;
 			int negAdj = mid-1;
-			int slot = negAdj;
+			int col = negAdj;
 			char[][] board = createBlankBoard(9,4);
 			for (int row=0; row < board.length; row++) {
-				while (slot < posAdj) {
-					board[row][slot] = peg;
-					slot++;
+				while (col < posAdj) {
+					board[row][col] = peg;
+					col++;
 				}
 				board[row][posAdj] = hole;
 				board[row][negAdj] = hole;
 				posAdj = mid+row+2;
 				negAdj = mid-row-2;
-				slot = negAdj;
+				col = negAdj;
 				}
 			board[2][4] = hole;
 			return board;
@@ -266,18 +266,18 @@ public class Game {
 		char[][] board = createBlankBoard(6, 6);
 		int posAdj = 4;
 		int negAdj = 2;
-		int slot = negAdj;
+		int col = negAdj;
 		boolean flip = false;
 		for (int row=0; row < board.length; row++) {
 			if (negAdj == -1) { // out of bounds; resets to in bounds
 				posAdj = 6;
 				negAdj = 0;
-				slot = negAdj;
+				col = negAdj;
 				flip = true;
 			}
-			while (slot < posAdj) {
-				board[row][slot] = peg;
-				slot++;
+			while (col < posAdj) {
+				board[row][col] = peg;
+				col++;
 			}
 			if (!((row == 2) || (row == 3))) {
 				board[row][posAdj] = hole;
@@ -290,7 +290,7 @@ public class Game {
 				posAdj++;
 				negAdj--;
 			}
-			slot = negAdj;
+			col = negAdj;
 		}
 		return board;
 	}
