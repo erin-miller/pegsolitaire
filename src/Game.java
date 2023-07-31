@@ -282,23 +282,20 @@ private char[][] createSimpleT() {
 		int slot = negAdj;
 		boolean flip = false;
 		for (int row=0; row < board.length; row++) {
-			if (negAdj == -1) {
+			if (negAdj == -1) { // out of bounds; resets to in bounds
 				posAdj = 6;
 				negAdj = 0;
 				slot = negAdj;
 				flip = true;
 			}
-
 			while (slot < posAdj) {
 				board[row][slot] = peg;
 				slot++;
 			}
-
 			if (!((row == 2) || (row == 3))) {
 				board[row][posAdj] = hole;
 				board[row][negAdj-1] = hole;
 			}
-			
 			if (flip) {
 				posAdj--;
 				negAdj++;
