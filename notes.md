@@ -1,7 +1,0 @@
-createBoard()
-displayBoard()
-readValidMove()
-isValidMove()
-performMove()
-countPegsRemaining()
-countMovesAvailable()
