@@ -15,8 +15,7 @@ public class Game {
 	 * @param max - the largest valid integer that the user may enter.
 	 * @return - the valid integer between min and max entered by the user.
 	 */
-	public int readValidInt(Scanner in, String prompt, int min, int max)
-	{
+	public int readValidInt(Scanner in, String prompt, int min, int max) {
 		int input;
 		System.out.print(prompt);
 		input = isInteger(in);
@@ -32,26 +31,21 @@ public class Game {
 	 * @param boardType - 1-4 indicating one of the following initial patterns:
 	 * @return - the fully initialized two dimensional array.
 	 */
-	public char[][] createBoard(int boardType)
-	{
+	public char[][] createBoard(int boardType) {
 		char[][] board;
 		switch(boardType) {
 			case 1: // CROSS
 				board = createCross();
 				break;
-
 			case 2: // CIRCLE
 				board = createCircle();
 				break;
-
 			case 3: // TRIANGLE
 				board = createTriangle();
 				break;
-
 			case 4: // SIMPLE T
 				board = createSimpleT();
 				break;
-
 			default:
 				board = createBlankBoard(1,1);
 		}
@@ -76,15 +70,13 @@ public class Game {
 			}
 	}
 
-	
 	/**
 	 * @param in - user input from standard in is ready through this.
 	 * @param board - the state of the board that moves must be legal on.
 	 * @return - the user's choice of column, row, and direction representing
 	 *   a valid move and store in that order with an array.
 	 */
-	public int[] readValidMove(Scanner in, char[][] board)
-	{
+	public int[] readValidMove(Scanner in, char[][] board) {
 		int row = -1;
 		int col = -1;
 		int direction = -1;
@@ -117,8 +109,7 @@ public class Game {
 	 * @return - true when the proposed move is legal, otherwise false.
 	 */
 
-	public boolean isValidMove(char[][] board, int row, int column, int direction)
-	{
+	public boolean isValidMove(char[][] board, int row, int column, int direction) {
 		row -= 1;
 		column -= 1;
 		try {
@@ -164,8 +155,7 @@ public class Game {
 	 * @param direction - the direction of the neighbor to jump this peg over.
 	 * @return - the updated board state after the specified move is taken.
 	 */
-	public char[][] performMove(char[][] board, int row, int column, int direction)
-	{
+	public char[][] performMove(char[][] board, int row, int column, int direction) {
 		row -= 1;
 		column -=1 ;
 		board[row][column] = hole;
@@ -193,8 +183,7 @@ public class Game {
 	 * @param board - the board that pegs are counted from.
 	 * @return - the number of pegs found in that board.
 	 */
-	public int countPegsRemaining(char[][] board)
-	{
+	public int countPegsRemaining(char[][] board) {
 		int pegs = 0;
 		for (int row=0; row < board.length; row++) {
 			for (int col=0; col < board[row].length; col++) {
@@ -210,8 +199,7 @@ public class Game {
 	 * @param board - the board that possible moves are counted from.
 	 * @return - the number of legal moves found in that board.
 	 */
-	public int countMovesAvailable(char[][] board)
-	{
+	public int countMovesAvailable(char[][] board) {
 		int moves = 0;
 		for (int row=0; row < board.length; row++) {
 			for (int col=0; col < board[row].length; col++) {

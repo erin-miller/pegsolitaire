@@ -1,12 +1,10 @@
 import java.util.Scanner;
 
-public class PegSolitaire 
-{	
+public class PegSolitaire {	
 	/**
 	 * @param args - any command line arguments may be ignored by this method.
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		Game game = new Game();
 		boolean continuePlay = true;
 		System.out.println(
