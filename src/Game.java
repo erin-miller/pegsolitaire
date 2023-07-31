@@ -237,43 +237,43 @@ public class Game {
 		return input;
 	}
 
-private char[][] createSimpleT() {
-		char[][] board = new char[5][5];
-		for (int row=0; row < board.length; row++) {
-			for (int col=0; col < board[row].length; col++) {
-				board[row][col] = hole;
-				if (row > 0 && row < 4) {
-					board[row][2] = peg;
-				}
-				if (row == 1) {
-					board[row][1] = peg;
-					board[row][3] = peg;
+	private char[][] createSimpleT() {
+			char[][] board = new char[5][5];
+			for (int row=0; row < board.length; row++) {
+				for (int col=0; col < board[row].length; col++) {
+					board[row][col] = hole;
+					if (row > 0 && row < 4) {
+						board[row][2] = peg;
+					}
+					if (row == 1) {
+						board[row][1] = peg;
+						board[row][3] = peg;
+					}
 				}
 			}
+			return board;
 		}
-		return board;
-	}
 
-	private char[][] createTriangle() {
-		int mid = 4;
-		int posAdj = mid+1;
-		int negAdj = mid-1;
-		int slot = negAdj;
-		char[][] board = createBlankBoard(9,4);
-		for (int row=0; row < board.length; row++) {
-			while (slot < posAdj) {
-				board[row][slot] = peg;
-				slot++;
-			}
-			board[row][posAdj] = hole;
-			board[row][negAdj] = hole;
-			posAdj = mid+row+2;
-			negAdj = mid-row-2;
-			slot = negAdj;
-			}
-		board[2][4] = hole;
-		return board;
-	}
+		private char[][] createTriangle() {
+			int mid = 4;
+			int posAdj = mid+1;
+			int negAdj = mid-1;
+			int slot = negAdj;
+			char[][] board = createBlankBoard(9,4);
+			for (int row=0; row < board.length; row++) {
+				while (slot < posAdj) {
+					board[row][slot] = peg;
+					slot++;
+				}
+				board[row][posAdj] = hole;
+				board[row][negAdj] = hole;
+				posAdj = mid+row+2;
+				negAdj = mid-row-2;
+				slot = negAdj;
+				}
+			board[2][4] = hole;
+			return board;
+		}
 
 	private char[][] createCircle() {
 		char[][] board = createBlankBoard(6, 6);
