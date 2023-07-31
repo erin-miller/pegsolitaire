@@ -108,7 +108,6 @@ public class Game {
 	 * @param direction - the direction proposed to move/jump that peg in.
 	 * @return - true when the proposed move is legal, otherwise false.
 	 */
-
 	public boolean isValidMove(char[][] board, int row, int column, int direction) {
 		row -= 1;
 		column -= 1;
@@ -225,42 +224,42 @@ public class Game {
 	}
 
 	private char[][] createSimpleT() {
-			char[][] board = new char[5][5];
-			for (int row=0; row < board.length; row++) {
-				for (int col=0; col < board[row].length; col++) {
-					board[row][col] = hole;
-					if (row > 0 && row < 4) {
-						board[row][2] = peg;
-					}
-					if (row == 1) {
-						board[row][1] = peg;
-						board[row][3] = peg;
-					}
+		char[][] board = new char[5][5];
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				board[row][col] = hole;
+				if (row > 0 && row < 4) {
+					board[row][2] = peg;
+				}
+				if (row == 1) {
+					board[row][1] = peg;
+					board[row][3] = peg;
 				}
 			}
-			return board;
 		}
+		return board;
+	}
 
-		private char[][] createTriangle() {
-			int mid = 4;
-			int posAdj = mid+1;
-			int negAdj = mid-1;
-			int col = negAdj;
-			char[][] board = createBlankBoard(9,4);
-			for (int row=0; row < board.length; row++) {
-				while (col < posAdj) {
-					board[row][col] = peg;
-					col++;
-				}
-				board[row][posAdj] = hole;
-				board[row][negAdj] = hole;
-				posAdj = mid+row+2;
-				negAdj = mid-row-2;
-				col = negAdj;
-				}
-			board[2][4] = hole;
-			return board;
-		}
+	private char[][] createTriangle() {
+		int mid = 4;
+		int posAdj = mid+1;
+		int negAdj = mid-1;
+		int col = negAdj;
+		char[][] board = createBlankBoard(9,4);
+		for (int row=0; row < board.length; row++) {
+			while (col < posAdj) {
+				board[row][col] = peg;
+				col++;
+			}
+			board[row][posAdj] = hole;
+			board[row][negAdj] = hole;
+			posAdj = mid+row+2;
+			negAdj = mid-row-2;
+			col = negAdj;
+			}
+		board[2][4] = hole;
+		return board;
+	}
 
 	private char[][] createCircle() {
 		char[][] board = createBlankBoard(6, 6);
