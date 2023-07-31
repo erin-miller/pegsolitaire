@@ -36,96 +36,21 @@ public class Game {
 	public char[][] createBoard(int boardType)
 	{
 		char[][] board;
-		int posAdj;
-		int negAdj;
-		int slot;
 		switch(boardType) {
 			case 1: // CROSS
-				board = createBlankBoard(9, 7);
-				List<Integer> corners = Arrays.asList(0,1,5,6);
-				for (int row=0; row < board.length; row++) {
-					for (int col=0; col < board[row].length; col++) {
-						if (corners.contains(row)) {
-							for (int i=3; i < 6; i++) {
-								board[row][i] = peg;
-							}
-						} else {
-							board[row][col] = peg;
-						}
-					}
-				}
-				board[3][4] = hole;
+				board = createCross();
 				break;
 
 			case 2: // CIRCLE
-				board = createBlankBoard(6, 6);
-				posAdj = 4;
-				negAdj = 2;
-				slot = negAdj;
-				boolean flip = false;
-				for (int row=0; row < board.length; row++) {
-					if (negAdj == -1) {
-						posAdj = 6;
-						negAdj = 0;
-						slot = negAdj;
-						flip = true;
-					}
-
-					while (slot < posAdj) {
-						board[row][slot] = peg;
-						slot++;
-					}
-
-					if (!((row == 2) || (row == 3))) {
-						board[row][posAdj] = hole;
-						board[row][negAdj-1] = hole;
-					}
-					
-					if (flip) {
-						posAdj--;
-						negAdj++;
-					} else {
-						posAdj++;
-						negAdj--;
-					}
-					slot = negAdj;
-				}
+				board = createCircle();
 				break;
 
 			case 3: // TRIANGLE
-				board = createBlankBoard(9,4);
-				int mid = 4;
-				posAdj = mid+1;
-				negAdj = mid-1;
-				slot = negAdj;
-				for (int row=0; row < board.length; row++) {
-					while (slot < posAdj) {
-						board[row][slot] = peg;
-						slot++;
-					}
-					board[row][posAdj] = hole;
-					board[row][negAdj] = hole;
-					posAdj = mid+row+2;
-					negAdj = mid-row-2;
-					slot = negAdj;
-					}
-				board[2][4] = hole;
+				board = createTriangle();
 				break;
 
 			case 4: // SIMPLE T
-				board = new char[5][5];
-				for (int row=0; row < board.length; row++) {
-					for (int col=0; col < board[row].length; col++) {
-						board[row][col] = hole;
-						if (row > 0 && row < 4) {
-							board[row][2] = peg;
-						}
-						if (row == 1) {
-							board[row][1] = peg;
-							board[row][3] = peg;
-						}
-					}
-				}
+				board = createSimpleT();
 				break;
 
 			default:
@@ -134,8 +59,6 @@ public class Game {
 		return board;
 	}
 
-
-	
 	/**
 	 * @param board - the current state of the board being drawn.
 	 */
@@ -312,6 +235,108 @@ public class Game {
 		}
 		in.nextLine();
 		return input;
+	}
+
+private char[][] createSimpleT() {
+		char[][] board;
+		board = new char[5][5];
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				board[row][col] = hole;
+				if (row > 0 && row < 4) {
+					board[row][2] = peg;
+				}
+				if (row == 1) {
+					board[row][1] = peg;
+					board[row][3] = peg;
+				}
+			}
+		}
+		return board;
+	}
+
+	private char[][] createTriangle() {
+		char[][] board;
+		int posAdj;
+		int negAdj;
+		int slot;
+		board = createBlankBoard(9,4);
+		int mid = 4;
+		posAdj = mid+1;
+		negAdj = mid-1;
+		slot = negAdj;
+		for (int row=0; row < board.length; row++) {
+			while (slot < posAdj) {
+				board[row][slot] = peg;
+				slot++;
+			}
+			board[row][posAdj] = hole;
+			board[row][negAdj] = hole;
+			posAdj = mid+row+2;
+			negAdj = mid-row-2;
+			slot = negAdj;
+			}
+		board[2][4] = hole;
+		return board;
+	}
+
+	private char[][] createCircle() {
+		char[][] board;
+		int posAdj;
+		int negAdj;
+		int slot;
+		board = createBlankBoard(6, 6);
+		posAdj = 4;
+		negAdj = 2;
+		slot = negAdj;
+		boolean flip = false;
+		for (int row=0; row < board.length; row++) {
+			if (negAdj == -1) {
+				posAdj = 6;
+				negAdj = 0;
+				slot = negAdj;
+				flip = true;
+			}
+
+			while (slot < posAdj) {
+				board[row][slot] = peg;
+				slot++;
+			}
+
+			if (!((row == 2) || (row == 3))) {
+				board[row][posAdj] = hole;
+				board[row][negAdj-1] = hole;
+			}
+			
+			if (flip) {
+				posAdj--;
+				negAdj++;
+			} else {
+				posAdj++;
+				negAdj--;
+			}
+			slot = negAdj;
+		}
+		return board;
+	}
+
+	private char[][] createCross() {
+		char[][] board;
+		board = createBlankBoard(9, 7);
+		List<Integer> corners = Arrays.asList(0,1,5,6);
+		for (int row=0; row < board.length; row++) {
+			for (int col=0; col < board[row].length; col++) {
+				if (corners.contains(row)) {
+					for (int i=3; i < 6; i++) {
+						board[row][i] = peg;
+					}
+				} else {
+					board[row][col] = peg;
+				}
+			}
+		}
+		board[3][4] = hole;
+		return board;
 	}
 
 	private String findDirectionType(int direction) {
